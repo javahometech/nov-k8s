@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: voldemo
+  labels:
+    name: voldemo
+spec:
+  volumes:
+    - name: voldemo
+      hostPath: /opt/logs/
+  containers:
+    - name: voldemo
+      image: kammana/nodeapp:v2
+      volumeMounts:
+        - name: voldemo
+          mountPath: /var/logs

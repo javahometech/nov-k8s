@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+spec:
+  volumes:
+    - name: pvc-demo
+      persistentVolumeClaim:
+        claimName: mypvc
+  containers:
+  - name: myapp
+    image: nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+      - name: pvc-demo
+        mountPath: /var/log/
+    ports:
+      - containerPort: 80
